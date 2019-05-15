@@ -22,8 +22,10 @@ conda activate habitat-env
 ```
 3. Clone and install `habitat-sim` from [the github repo](https://github.com/facebookresearch/habitat-sim#quick-installation). You must be in the same virtualenv as before.
 Alternatively, run `pip install git+https://github.com/facebookresearch/habitat-sim.git` to install it locally. Note that the `pip` method does not support headless compilation.
+SplitNet's codebase is known to be compatible with https://github.com/facebookresearch/habitat-sim/commit/a674c5c13683a117c06820c54f5bec9c1775800d
 4. Clone and install `habitat-api` from [the github repo](https://github.com/facebookresearch/habitat-api#installation). You must be in the same virtualenv as before.
 Alternatively, run `pip install git+https://github.com/facebookresearch/habitat-api.git` to install it locally.
+SplitNet's codebase is known to be compatible with https://github.com/facebookresearch/habitat-api/commit/5679a5dc26d5097eb14658eff91a800e18763fe6
 
 ### Virtualenv
 1. Create your virtual environment: `virtualenv --python=python3.6 habitat-env && source habitat-env/bin/activate`
@@ -36,8 +38,10 @@ pip install -r requirements.txt
 ```
 3. Clone and install `habitat-sim` from [the github repo](https://github.com/facebookresearch/habitat-sim#quick-installation). You must be in the same virtualenv as before.
 Alternatively, run `pip install git+https://github.com/facebookresearch/habitat-sim.git` to install it locally. Note that the `pip` method does not support headless compilation.
+SplitNet's codebase is known to be compatible with https://github.com/facebookresearch/habitat-sim/commit/a674c5c13683a117c06820c54f5bec9c1775800d
 4. Clone and install `habitat-api` from [the github repo](https://github.com/facebookresearch/habitat-api#installation). You must be in the same virtualenv as before.
 Alternatively, run `pip install git+https://github.com/facebookresearch/habitat-api.git` to install it locally.
+SplitNet's codebase is known to be compatible with https://github.com/facebookresearch/habitat-api/commit/5679a5dc26d5097eb14658eff91a800e18763fe6
 
 ## Data
 We use the data sources linked from the public habitat-api repository. You will need to individually download SUNCG, MP3D, and Gibson from their sources. [habitat-sim](https://github.com/facebookresearch/habitat-sim#datasets) and [habitat-api](https://github.com/facebookresearch/habitat-api#data) share the links to the files. We additionally use the Point-Nav datasets from habitat-api, but we also provide a script for generating new datasets.

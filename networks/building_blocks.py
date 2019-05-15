@@ -1,3 +1,9 @@
+#!/usr/bin/env python3
+
+# Copyright (c) Facebook, Inc. and its affiliates.
+# This source code is licensed under the Creative Commons license found in the
+# LICENSE file in the root directory of this source tree.
+
 # Much of the basic code taken from https://github.com/kevinlu1211/pytorch-decoder-resnet-50-encoder
 
 import torch.nn.functional as F

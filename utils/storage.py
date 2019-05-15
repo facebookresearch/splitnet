@@ -1,3 +1,9 @@
+#!/usr/bin/env python3
+
+# Copyright (c) Facebook, Inc. and its affiliates.
+# This source code is licensed under the Creative Commons license found in the
+# LICENSE file in the root directory of this source tree.
+
 import torch
 from a2c_ppo_acktr.storage import RolloutStorage
 from torch.utils.data.sampler import BatchSampler, SubsetRandomSampler
