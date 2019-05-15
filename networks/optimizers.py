@@ -7,9 +7,8 @@
 import torch
 import torch.nn.functional as F
 import torch.optim as optim
+from dg_util.python_utils import pytorch_util as pt_util
 from torch import nn
-
-from utils import pytorch_util as pt_util
 
 
 def get_visual_loss(outputs, label_dict, output_info):

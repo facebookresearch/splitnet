@@ -17,6 +17,9 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 import tqdm
+from dg_util.python_utils import drawing
+from dg_util.python_utils import pytorch_util as pt_util
+from dg_util.python_utils import tensorboard_logger
 from habitat.datasets import make_dataset
 from habitat.sims.habitat_simulator import SimulatorActions
 from habitat.utils.visualizations import maps
@@ -25,9 +28,7 @@ from habitat.utils.visualizations.utils import images_to_video
 from base_habitat_rl_runner import ACTION_SPACE, ACTION_SPACE_TO_SIM_ACTION, SIM_ACTION_TO_NAME
 from base_habitat_rl_runner import BaseHabitatRLRunner
 from reinforcement_learning.get_config import get_dataset_config
-from utils import drawing
-from utils import pytorch_util as pt_util
-from utils import tensorboard_logger
+from utils import draw_outputs
 
 REWARD_SCALAR = 1.0
 
@@ -259,7 +260,7 @@ class HabitatRLEvalRunner(BaseHabitatRLRunner):
                             draw_obs["egomotion_pred"] = pt_util.to_numpy_array(F.softmax(egomotion_pred, dim=1)).copy()
                         else:
                             draw_obs["egomotion_pred"] = None
-                    images, titles, normalize = drawing.obs_to_images(draw_obs)
+                    images, titles, normalize = draw_outputs.obs_to_images(draw_obs)
                     im_inds = [0, 2, 3, 1, 6, 7, 8, 5]
                     height, width = images[0].shape[:2]
                     subplot_image = drawing.subplot(

@@ -22,11 +22,11 @@ import torch.utils.data
 import torch.utils.data.distributed
 import torchvision.datasets as datasets
 import torchvision.transforms as transforms
+from dg_util.python_utils import misc_util
+from dg_util.python_utils import pytorch_util as pt_util
+from dg_util.python_utils import tensorboard_logger
 
 from networks.networks import ImagenetModel
-from utils import python_util
-from utils import pytorch_util as pt_util
-from utils import tensorboard_logger
 
 parser = argparse.ArgumentParser(description="PyTorch ImageNet Training")
 parser.add_argument("--data", metavar="DIR", help="path to dataset")
@@ -114,7 +114,7 @@ def main():
         )
 
     log_prefix = args.log_prefix
-    time_str = python_util.get_time_str()
+    time_str = misc_util.get_time_str()
     checkpoint_dir = os.path.join(log_prefix, args.checkpoint_dirname, time_str)
 
     torch_devices = [int(gpu_id.strip()) for gpu_id in args.pytorch_gpu_ids.split(",")]

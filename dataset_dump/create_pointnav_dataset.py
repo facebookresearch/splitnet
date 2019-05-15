@@ -12,7 +12,7 @@ import habitat
 import tqdm
 from habitat.config.default import get_config
 from habitat.core.dataset import Dataset
-from habitat.datasets.pointnav import generator
+from habitat.datasets.pointnav import generator  # TODO generator isn't a thing anymore. See if anyone notices.
 from habitat.tasks.nav.nav_task import NavigationEpisode, NavigationGoal
 
 DEBUG = False

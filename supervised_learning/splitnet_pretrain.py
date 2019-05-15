@@ -13,6 +13,10 @@ import numpy as np
 import torch
 import torch.optim as optim
 import tqdm
+from dg_util.python_utils import drawing
+from dg_util.python_utils import misc_util
+from dg_util.python_utils import pytorch_util as pt_util
+from dg_util.python_utils import tensorboard_logger
 from torch.multiprocessing import set_start_method
 from torchvision import transforms
 
@@ -20,10 +24,6 @@ from arguments import get_args
 from dataset_dump.create_rgb_dataset import RandomImageGenerator
 from networks import optimizers
 from networks.networks import ShallowVisualEncoder
-from utils import drawing
-from utils import python_util
-from utils import pytorch_util as pt_util
-from utils import tensorboard_logger
 
 args = get_args()
 
@@ -370,7 +370,7 @@ def main():
     )
 
     log_prefix = args.log_prefix
-    time_str = python_util.get_time_str()
+    time_str = misc_util.get_time_str()
     checkpoint_dir = os.path.join(log_prefix, args.checkpoint_dirname, time_str)
 
     optimizer = optim.Adam(model.parameters(), lr=args.lr)

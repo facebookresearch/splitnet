@@ -14,15 +14,16 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 from a2c_ppo_acktr.utils import update_linear_schedule
+from dg_util.python_utils import drawing
+from dg_util.python_utils import pytorch_util as pt_util
+from dg_util.python_utils import tensorboard_logger
 from habitat.datasets import make_dataset
 from habitat.sims.habitat_simulator import SimulatorActions
 from habitat.utils.visualizations.utils import images_to_video
 
 from base_habitat_rl_runner import ACTION_SPACE, SIM_ACTION_TO_NAME, ACTION_SPACE_TO_SIM_ACTION
 from eval_splitnet import HabitatRLEvalRunner, REWARD_SCALAR
-from utils import drawing
-from utils import pytorch_util as pt_util
-from utils import tensorboard_logger
+from utils import draw_outputs
 from utils.storage import RolloutStorageWithMultipleObservations
 
 
@@ -230,7 +231,7 @@ class HabitatRLTrainAndEvalRunner(HabitatRLEvalRunner):
                                     ).copy()
                                 else:
                                     draw_obs["egomotion_pred"] = None
-                            images, titles, normalize = drawing.obs_to_images(draw_obs)
+                            images, titles, normalize = draw_outputs.obs_to_images(draw_obs)
                             if self.shell_args.algo == "supervised":
                                 im_inds = [0, 2, 3, 1, 9, 6, 7, 8, 5, 4]
                             else:
@@ -296,7 +297,7 @@ class HabitatRLTrainAndEvalRunner(HabitatRLEvalRunner):
                                     final_rgb = final_rgb[np.newaxis, ...].transpose(0, 3, 1, 2)
                                     draw_obs["rgb"] = final_rgb
 
-                                    images, titles, normalize = drawing.obs_to_images(draw_obs)
+                                    images, titles, normalize = draw_outputs.obs_to_images(draw_obs)
                                     im_inds = [0, 2, 3, 1, 6, 7, 8, 5]
                                     height, width = images[0].shape[:2]
                                     subplot_image = drawing.subplot(

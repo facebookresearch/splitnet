@@ -4,24 +4,10 @@
 # This source code is licensed under the Creative Commons license found in the
 # LICENSE file in the root directory of this source tree.
 
-import gym
 import torch
 from baselines.common.vec_env.vec_env import VecEnvWrapper
 
-from utils import pytorch_util as pt_util
-
-
-class LambdaObservationWrapper(gym.ObservationWrapper):
-    def __init__(self, env, lambda_func):
-        super(LambdaObservationWrapper, self).__init__(env)
-        self.lambda_func = lambda_func
-
-    def step(self, action):
-        result = self.env.step(action)
-        return self.observation(result)
-
-    def observation(self, observation):
-        return self.lambda_func(observation)
+from dg_util.python_utils import pytorch_util as pt_util
 
 
 class HabitatVecEnvWrapper(VecEnvWrapper):

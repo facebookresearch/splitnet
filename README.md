@@ -21,10 +21,10 @@ conda env update -n habitat-env -f environment.yml
 conda activate habitat-env
 ```
 3. Clone and install `habitat-sim` from [the github repo](https://github.com/facebookresearch/habitat-sim#quick-installation). You must be in the same virtualenv as before.
-Alternatively, run `pip install git+https://github.com/facebookresearch/habitat-sim.git` to install it locally. Note that the `pip` method does not support headless compilation.
+Alternatively, run `pip install git+https://github.com/facebookresearch/habitat-sim.git@a674c5c13683a117c06820c54f5bec9c1775800d` to install it locally. Note that the `pip` method does not support headless compilation.
 SplitNet's codebase is known to be compatible with https://github.com/facebookresearch/habitat-sim/commit/a674c5c13683a117c06820c54f5bec9c1775800d
 4. Clone and install `habitat-api` from [the github repo](https://github.com/facebookresearch/habitat-api#installation). You must be in the same virtualenv as before.
-Alternatively, run `pip install git+https://github.com/facebookresearch/habitat-api.git` to install it locally.
+Alternatively, run `pip install git+https://github.com/facebookresearch/habitat-api.git@5679a5dc26d5097eb14658eff91a800e18763fe6` to install it locally.
 SplitNet's codebase is known to be compatible with https://github.com/facebookresearch/habitat-api/commit/5679a5dc26d5097eb14658eff91a800e18763fe6
 
 ### Virtualenv
@@ -37,10 +37,10 @@ source habitat-env/bin/activate
 pip install -r requirements.txt
 ```
 3. Clone and install `habitat-sim` from [the github repo](https://github.com/facebookresearch/habitat-sim#quick-installation). You must be in the same virtualenv as before.
-Alternatively, run `pip install git+https://github.com/facebookresearch/habitat-sim.git` to install it locally. Note that the `pip` method does not support headless compilation.
+Alternatively, run `pip install git+https://github.com/facebookresearch/habitat-sim.git@a674c5c13683a117c06820c54f5bec9c1775800d` to install it locally. Note that the `pip` method does not support headless compilation.
 SplitNet's codebase is known to be compatible with https://github.com/facebookresearch/habitat-sim/commit/a674c5c13683a117c06820c54f5bec9c1775800d
 4. Clone and install `habitat-api` from [the github repo](https://github.com/facebookresearch/habitat-api#installation). You must be in the same virtualenv as before.
-Alternatively, run `pip install git+https://github.com/facebookresearch/habitat-api.git` to install it locally.
+Alternatively, run `pip install git+https://github.com/facebookresearch/habitat-api.git@5679a5dc26d5097eb14658eff91a800e18763fe6` to install it locally.
 SplitNet's codebase is known to be compatible with https://github.com/facebookresearch/habitat-api/commit/5679a5dc26d5097eb14658eff91a800e18763fe6
 
 ## Data

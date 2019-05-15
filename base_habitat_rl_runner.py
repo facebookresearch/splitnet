@@ -12,6 +12,8 @@ import gym
 import habitat
 import numpy as np
 import torch
+from dg_util.python_utils import misc_util
+from dg_util.python_utils import pytorch_util as pt_util
 from habitat.sims.habitat_simulator import SimulatorActions
 
 from arguments import get_args
@@ -20,8 +22,6 @@ from networks import optimizers
 from networks.networks import VisualPolicy
 from reinforcement_learning.get_config import get_dataset_config
 from reinforcement_learning.nav_rl_env import make_env_fn, PointnavRLEnv, ExplorationRLEnv, RunAwayRLEnv
-from utils import python_util
-from utils import pytorch_util as pt_util
 from utils.env_util import VecPyTorch, HabitatVecEnvWrapper
 
 ACTION_SPACE_TO_SIM_ACTION = [SimulatorActions.FORWARD, SimulatorActions.LEFT, SimulatorActions.RIGHT]
@@ -222,7 +222,7 @@ class BaseHabitatRLRunner(object):
         if self.shell_args.debug:
             print("actor critic", self.agent)
         self.agent.to(self.device)
-        self.time_str = python_util.get_time_str()
+        self.time_str = misc_util.get_time_str()
 
         visual_layers = self.agent.base.visual_encoder.module
         if self.shell_args.freeze_encoder_features:

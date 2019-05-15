@@ -10,11 +10,11 @@ from typing import Any
 
 import habitat
 import numpy as np
+from dg_util.python_utils import pytorch_util as pt_util
 from habitat.core.simulator import Observations
 from habitat.sims.habitat_simulator import SimulatorActions
 
 from utils import one_hot_shortest_path_follower
-from utils import pytorch_util as pt_util
 
 SIM_ACTION_IND_TO_SIM_ACTION = {action.value: action for action in SimulatorActions}
 

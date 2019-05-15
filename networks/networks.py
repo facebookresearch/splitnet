@@ -12,10 +12,10 @@ import torch
 import torchvision.models as models
 from a2c_ppo_acktr import model
 from a2c_ppo_acktr.utils import init
+from dg_util.python_utils import pytorch_util as pt_util
 from torch import nn
 
 from networks.building_blocks import ConvBlock, Bridge, ShallowUpBlockForHourglassNet
-from utils import pytorch_util as pt_util
 
 
 class EncoderDecoderInterface(nn.Module, ABC):
