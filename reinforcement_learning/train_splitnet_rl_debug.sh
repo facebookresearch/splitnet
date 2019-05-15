@@ -10,7 +10,7 @@ export NUMEXPR_NUM_THREADS=4
 python train_splitnet.py \
     --algo ppo \
     --encoder-network-type ShallowVisualEncoder \
-    --log-prefix logs/${TASK}/${DATASET}/splitnet_rl \
+    --log-prefix output_files/${TASK}/${DATASET}/splitnet_rl \
     --use-gae \
     --lr 2.5e-4 \
     --clip-param 0.1 \

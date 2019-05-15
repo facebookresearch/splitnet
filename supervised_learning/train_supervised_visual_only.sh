@@ -8,7 +8,7 @@ export VECLIB_MAXIMUM_THREADS=4
 export NUMEXPR_NUM_THREADS=4
 
 # Copy this file to log location for tracking the flags used.
-LOG_LOCATION="logs/"${TASK}"/"${DATASET}"/splitnet_pretrain"
+LOG_LOCATION="output_files/"${TASK}"/"${DATASET}"/splitnet_pretrain"
 mkdir -p ${LOG_LOCATION}
 cp "$(readlink -f $0)" ${LOG_LOCATION}
 

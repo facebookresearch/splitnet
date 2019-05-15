@@ -1,5 +1,5 @@
 python supervised_learning/imagenet_pretrain.py \
-    --log-prefix logs/imagenet/pretrain \
+    --log-prefix output_files/imagenet/pretrain \
     --workers 40 \
     --pytorch-gpu-ids 3,4,5,6 \
     --batch-size 256 \

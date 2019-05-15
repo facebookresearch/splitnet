@@ -62,10 +62,6 @@ def get_args():
     parser.add_argument("--no-cuda", action="store_true", default=False, help="disables CUDA training")
 
     parser.add_argument(
-        "--no-recurrent-policy", action="store_true", default=False, help="do not use a recurrent policy (untested)"
-    )
-
-    parser.add_argument(
         "--use-linear-lr-decay", action="store_true", default=False, help="use a linear schedule on the learning rate"
     )
 
@@ -147,7 +143,7 @@ def get_args():
 
     parser.add_argument("--no-policy-loss", action="store_true", default=False, help="disable policy loss")
 
-    parser.add_argument("--log-prefix", type=str, default="logs", required=True, help="path to logs, checkpoints, etc.")
+    parser.add_argument("--log-prefix", type=str, default="output_files", required=True, help="path to logs, checkpoints, etc.")
 
     parser.add_argument(
         "--tensorboard-dirname", type=str, default="tensorboard", help="path under log-prefix for tensorboard logs."
@@ -155,10 +151,6 @@ def get_args():
 
     parser.add_argument(
         "--checkpoint-dirname", type=str, default="checkpoints", help="path under log-prefix for checkpoints."
-    )
-
-    parser.add_argument(
-        "--monitor-dirname", type=str, default="monitor", help="path under log-prefix for monitor logs."
     )
 
     parser.add_argument(
@@ -170,7 +162,7 @@ def get_args():
     parser.add_argument("--debug", action="store_true", default=False, help="Sets the debug flag.")
 
     parser.add_argument(
-        "--eval-interval", type=int, default=None, help="eval interval, one eval per n updates (default: None)"
+        "--eval-interval", type=int, default=None, help="eval interval, one eval per n updates (default: No eval)"
     )
 
     parser.add_argument(
@@ -200,7 +192,7 @@ def get_args():
     )
 
     parser.add_argument(
-        "--blind", action="store_true", default=False, help="Blind the optimizer (no images fed in as input)."
+        "--blind", action="store_true", default=False, help="Blind the network (no images fed in as input)."
     )
 
     parser.add_argument("--method-name", type=str, default="SplitNet", help="Name of the method that is being used.")

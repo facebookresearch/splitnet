@@ -1,4 +1,4 @@
-WEIGHT_DIRECTORY="logs2"
+WEIGHT_DIRECTORY="output_files"
 
 
 if ! mkdir ${WEIGHT_DIRECTORY} 2>/dev/null; then
