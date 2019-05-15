@@ -1,0 +1,10 @@
+*__pycache__
+*env
+*.pt
+*.jpg
+*.png
+*.mp4
+logs
+data
+*idea
+src

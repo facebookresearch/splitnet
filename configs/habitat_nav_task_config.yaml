@@ -1,0 +1,37 @@
+TASK:
+  TYPE: Nav-v0
+  SENSORS: ['POINTGOAL_SENSOR',
+            'HEADING_SENSOR',
+  ]
+  MEASUREMENTS: ['SPL',
+                 'TOP_DOWN_MAP',
+  ]
+SIMULATOR:
+  SCENE: data/scene_datasets/mp3d/17DRP5sb8fy/17DRP5sb8fy.glb
+  FORWARD_STEP_SIZE: 0.25
+  TURN_ANGLE: 10
+  AGENT_0:
+    ANGULAR_ACCELERATION: 15.7
+    ANGULAR_FRICTION: 1.0
+    COEFFICIENT_OF_RESTITUTION: 0.15707963267
+    LINEAR_ACCELERATION: 10.0
+    LINEAR_FRICTION: 1.0
+    SENSORS: ['RGB_SENSOR']
+  RGB_SENSOR:
+    POSITION: [0, 1.09, 0]
+    HEIGHT: 256
+    WIDTH: 256
+    HFOV: 45
+    TYPE: HabitatSimRGBSensor
+  DEPTH_SENSOR:
+    HFOV: 45
+    MIN_DEPTH: 0
+    MAX_DEPTH: 10
+    NORMALIZE_DEPTH: True
+    TYPE: HabitatSimDepthSensor
+  SEMANTIC_SENSOR:
+    HFOV: 45
+    TYPE: HabitatSimSemanticSensor
+DATASET:
+  POINTNAVV1:
+    DATA_PATH: data/datasets/pointnav/suncg/v1/{split}/{split}.json.gz
