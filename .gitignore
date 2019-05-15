@@ -4,7 +4,7 @@
 *.jpg
 *.png
 *.mp4
-logs
+*logs*
 data
 *idea
 src
