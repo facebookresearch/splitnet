@@ -26,5 +26,4 @@ python train_splitnet.py \
     --task pointnav \
     --pytorch-gpu-ids 3 \
     --render-gpu-ids 4,5,6 \
-    --no-tensorboard \
-    --no-weight-update \
+    --end-to-end \
