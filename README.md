@@ -70,7 +70,7 @@ What's the matter, you don't trust our results? Good. You shouldn't. We provide 
 First you should look at all the options of arguments in the [arguments.py](arguments.py) file. Many of them are useful for tweaking parameters or adjusting how the learning is performed. All baselines and experiments from the paper can be recreated using various arguments, but shell scripts with these exact parameters are not provided for brevity. They can be added upon request.
 
 ### Downloading the training/val datasets
-See [Data](##Data)
+See [Data](#Data)
 
 ### Retraining the Point-Nav model
 1. You may wish to modify some of the variables in the shell script file before running such as the log location, dataset, gpus to use etc. It should be fairly obvious how these work.
