@@ -26,5 +26,5 @@ dependencies:
     - Pillow>=6.0.0
     - "git+https://github.com/openai/baselines.git@5d8041d18e04a83fc0ebb29fdb7e208224868e1b"
     - "git+https://github.com/ikostrikov/pytorch-a2c-ppo-acktr-gail.git@b4133ecb9528d965cae4f1d4618bd5eff03de126"
-    - "git+https://github.com/danielgordon10/dg_util.git@26252345881ffdf9b47b48d042129708c748bcf7"
+    - "git+https://github.com/danielgordon10/dg_util.git@0076ba2b553016ca5cdc99c3fcdfbf4f41a43a75"
 
