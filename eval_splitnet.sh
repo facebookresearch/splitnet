@@ -10,7 +10,7 @@ export NUMEXPR_NUM_THREADS=4
 
 
 
-LOG_LOCATION="logs/"${TASK}"/"${DATASET}"/pretrain_supervised_rl"
+LOG_LOCATION="output_files/"${TASK}"/"${DATASET}"/splitnet_pretrain_supervised_rl"
 
 python eval_splitnet.py \
     --log-prefix ${LOG_LOCATION} \

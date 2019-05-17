@@ -189,8 +189,6 @@ class BaseHabitatRLRunner(object):
 
         if self.shell_args.encoder_network_type == "ShallowVisualEncoder":
             encoder_type = networks.ShallowVisualEncoder
-        elif self.shell_args.encoder_network_type == "ShallowImagenetEncoder":
-            encoder_type = networks.ShallowImagenetEncoder
         elif self.shell_args.encoder_network_type == "ResNetEncoder":
             encoder_type = networks.ResNetEncoder
         else:
@@ -208,7 +206,7 @@ class BaseHabitatRLRunner(object):
             base_kwargs=dict(
                 encoder_type=encoder_type,
                 decoder_output_info=decoder_output_info,
-                recurrent=self.shell_args.recurrent_policy,
+                recurrent=True,
                 end_to_end=self.shell_args.end_to_end,
                 hidden_size=256,
                 target_vector_size=target_vector_size,

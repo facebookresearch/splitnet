@@ -35,3 +35,4 @@ SIMULATOR:
 DATASET:
   POINTNAVV1:
     DATA_PATH: data/datasets/pointnav/suncg/v1/{split}/{split}.json.gz
+

@@ -46,13 +46,32 @@ SplitNet's codebase is known to be compatible with https://github.com/facebookre
 ## Data
 We use the data sources linked from the public habitat-api repository. You will need to individually download SUNCG, MP3D, and Gibson from their sources. [habitat-sim](https://github.com/facebookresearch/habitat-sim#datasets) and [habitat-api](https://github.com/facebookresearch/habitat-api#data) share the links to the files. We additionally use the Point-Nav datasets from habitat-api, but we also provide a script for generating new datasets.
 
+To use the same data from the dataset:
+1. Create a symlink to where you downloaded the directory containing the `scene_datasets` asset files for each of the datasets. Call this folder `data`.
+```bash
+ln -s /path/to/habitat/data data
+```
+1. Verify that this is set up in the expected way by running `ls data/scene_datasets`. You should see:
+`gibson  mp3d  suncg` based on which you have downloaded.
+1. Download and extract the premade training datasets by running `sh download_dataset.sh`.
+1. Copy/Move the downloaded datasets into the data folder.
+```bash
+mv downloaded_data/* data
+```
+
 ## Pretrained Weights
-TODO
+Edit [download_weights.sh](download_weights.sh) `WEIGHT_DIRECTORY` to be a non-existing directory where the files should be downloaded.
+Download the pretrained weights for all experiments by running `sh download_weights.sh`. The download contains a README on how the files are organized.
+
 
 ## Training
 What's the matter, you don't trust our results? Good. You shouldn't. We provide example training scripts to recreate our experiments so you don't have to trust us.
 
 First you should look at all the options of arguments in the [arguments.py](arguments.py) file. Many of them are useful for tweaking parameters or adjusting how the learning is performed. All baselines and experiments from the paper can be recreated using various arguments, but shell scripts with these exact parameters are not provided for brevity. They can be added upon request.
+
+### Downloading the training/val datasets
+See [Data](##Data)
+
 ### Retraining the Point-Nav model
 1. You may wish to modify some of the variables in the shell script file before running such as the log location, dataset, gpus to use etc. It should be fairly obvious how these work.
 1. Pretrain the visual encoder/decoder: `sh supervised_learning/train_supervised_visual_only.sh`

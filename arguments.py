@@ -216,7 +216,6 @@ def get_args():
     args.tensorboard = not args.no_tensorboard
     args.load_model = not args.clear_weights
     args.num_envs = args.num_processes
-    args.recurrent_policy = not args.no_recurrent_policy
     args.save_checkpoints = not args.no_save_checkpoints
 
     args.update_encoder_features = not args.freeze_encoder_features
