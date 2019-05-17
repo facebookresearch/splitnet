@@ -8,6 +8,7 @@ import string
 
 import cv2
 import numpy as np
+from dg_util.python_utils.drawing import draw_probability_hist
 from habitat.utils.visualizations import maps
 
 
