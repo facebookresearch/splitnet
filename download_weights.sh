@@ -13,12 +13,12 @@ if ! mkdir ${WEIGHT_DIRECTORY} 2>/dev/null; then
 fi
 cd ${WEIGHT_DIRECTORY}
 echo "Downloading"
-wget https://dl.fbaipublicfiles.com/splitnet/splitnet.tar.gz
+wget https://dl.fbaipublicfiles.com/splitnet/splitnet_models.tar
 echo "Unzipping"
-tar -zxf splitnet.tar.gz
-mv splitnet/* .
-rm -rf splitnet
-rm -rf splitnet.tar.gz
+tar -xf splitnet_models.tar
+mv splitnet_models/* .
+rm -rf splitnet_models
+rm -rf splitnet_models.tar
 echo "Success"
 cd ..
 

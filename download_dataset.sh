@@ -4,21 +4,21 @@
 # This source code is licensed under the Creative Commons license found in the
 # LICENSE file in the root directory of this source tree.
 
-WEIGHT_DIRECTORY="downloaded_data"
+DATA_DIRECTORY="downloaded_data"
 
 
-if ! mkdir ${WEIGHT_DIRECTORY} 2>/dev/null; then
-    echo ${WEIGHT_DIRECTORY} "directory already exists. Please specify a non-existing directory just to be safe."
+if ! mkdir ${DATA_DIRECTORY} 2>/dev/null; then
+    echo ${DATA_DIRECTORY} "directory already exists. Please specify a non-existing directory just to be safe."
     exit
 fi
-cd ${WEIGHT_DIRECTORY}
+cd ${DATA_DIRECTORY}
 echo "Downloading"
-wget https://dl.fbaipublicfiles.com/splitnet/splitnet_dataset.tar.gz
+wget https://dl.fbaipublicfiles.com/splitnet/splitnet_dataset.tar
 echo "Unzipping"
-tar -zxf splitnet_dataset.tar.gz
+tar -xf splitnet_dataset.tar
 mv splitnet_dataset/* .
 rm -rf splitnet_dataset
-rm -rf splitnet_dataset.tar.gz
+rm -rf splitnet_dataset.tar
 echo "Success"
 cd ..
 
