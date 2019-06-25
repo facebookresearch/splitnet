@@ -27,7 +27,7 @@ class OneHotShortestPathFollower(ShortestPathFollower):
 
         max_grad_dir = self._est_max_grad_dir(goal_pos)
         if max_grad_dir is None:
-            return action_to_one_hot(SimulatorActions.FORWARD.value)
+            return action_to_one_hot(SimulatorActions.MOVE_FORWARD.value)
         return self._step_along_grad(max_grad_dir, goal_pos, previous_action)
 
     def _step_along_grad(
@@ -36,31 +36,31 @@ class OneHotShortestPathFollower(ShortestPathFollower):
         current_state = self._sim.get_agent_state()
         alpha = angle_between_quaternions(grad_dir, current_state.rotation)
         if alpha <= np.deg2rad(self._sim.config.TURN_ANGLE) + EPSILON:
-            return action_to_one_hot(SimulatorActions.FORWARD.value)
+            return action_to_one_hot(SimulatorActions.MOVE_FORWARD.value)
         else:
-            if previous_action == SimulatorActions.LEFT or previous_action == SimulatorActions.RIGHT:
+            if previous_action == SimulatorActions.TURN_LEFT or previous_action == SimulatorActions.TURN_RIGHT:
                 # Previous action was a turn, make current suggestion match previous action.
                 best_turn = previous_action
             else:
-                sim_action = SimulatorActions.LEFT
+                sim_action = SimulatorActions.TURN_LEFT
                 self._sim.step(sim_action.value)
                 best_turn = (
-                    SimulatorActions.LEFT
+                    SimulatorActions.TURN_LEFT
                     if (angle_between_quaternions(grad_dir, self._sim.get_agent_state().rotation) < alpha)
-                    else SimulatorActions.RIGHT
+                    else SimulatorActions.TURN_RIGHT
                 )
                 self._reset_agent_state(current_state)
 
             # Check if forward reduces geodesic distance
             curr_dist = self._geo_dist(goal_pos)
-            self._sim.step(SimulatorActions.FORWARD.value)
+            self._sim.step(SimulatorActions.MOVE_FORWARD.value)
             new_dist = self._geo_dist(goal_pos)
             new_pos = self._sim.get_agent_state().position
             movement_size = np.linalg.norm(new_pos - current_state.position)
             self._reset_agent_state(current_state)
             if new_dist < curr_dist and movement_size / self._step_size > 0.95:
                 # Make probability proportional to benefit of doing forward action
-                forward_ind = SimulatorActions.FORWARD.value
+                forward_ind = SimulatorActions.MOVE_FORWARD.value
                 one_hot = np.zeros(len(SimulatorActions), dtype=np.float32)
                 one_hot[forward_ind] = (curr_dist - new_dist) / self._step_size
                 if one_hot[forward_ind] > 0.8:

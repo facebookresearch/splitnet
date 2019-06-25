@@ -109,7 +109,7 @@ class FormattedRLEnv(MultiDatasetEnv, ABC):
             self.habitat_env.sim.get_agent_state().rotation,
         )
 
-        if self._previous_action == SimulatorActions.FORWARD:
+        if self._previous_action == SimulatorActions.MOVE_FORWARD:
             if np.linalg.norm(self._current_pose[0] - self._previous_pose[0]) < self._step_size * 0.25:
                 # Collided with something
                 reward += self._collision_reward

@@ -24,13 +24,13 @@ from reinforcement_learning.get_config import get_dataset_config
 from reinforcement_learning.nav_rl_env import make_env_fn, PointnavRLEnv, ExplorationRLEnv, RunAwayRLEnv
 from utils.env_util import VecPyTorch, HabitatVecEnvWrapper
 
-ACTION_SPACE_TO_SIM_ACTION = [SimulatorActions.FORWARD, SimulatorActions.LEFT, SimulatorActions.RIGHT]
+ACTION_SPACE_TO_SIM_ACTION = [SimulatorActions.MOVE_FORWARD, SimulatorActions.TURN_LEFT, SimulatorActions.TURN_RIGHT]
 ACTION_SPACE = np.array([action.value for action in ACTION_SPACE_TO_SIM_ACTION], dtype=np.int64)
 
 SIM_ACTION_TO_NAME = {
-    SimulatorActions.FORWARD: "Forward",
-    SimulatorActions.LEFT: "Rotate Left",
-    SimulatorActions.RIGHT: "Rotate Right",
+    SimulatorActions.MOVE_FORWARD: "Forward",
+    SimulatorActions.TURN_LEFT: "Rotate Left",
+    SimulatorActions.TURN_RIGHT: "Rotate Right",
     SimulatorActions.STOP: "Stop",
 }
 
