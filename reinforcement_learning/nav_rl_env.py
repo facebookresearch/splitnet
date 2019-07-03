@@ -12,11 +12,11 @@ import habitat
 import numpy as np
 from dg_util.python_utils import pytorch_util as pt_util
 from habitat.core.simulator import Observations
-from habitat.sims.habitat_simulator import SimulatorActions
+from habitat import SimulatorActions
 
 from utils import one_hot_shortest_path_follower
 
-SIM_ACTION_IND_TO_SIM_ACTION = {action.value: action for action in SimulatorActions}
+#SIM_ACTION_IND_TO_SIM_ACTION = {SimulatorActions[action]: action for action in SimulatorActions}
 
 
 class MultiDatasetEnv(habitat.RLEnv, ABC):
@@ -93,7 +93,7 @@ class FormattedRLEnv(MultiDatasetEnv, ABC):
 
     def step(self, action):
         self._previous_pose = self._current_pose
-        self._previous_action = SIM_ACTION_IND_TO_SIM_ACTION[action]
+        self._previous_action = action #SIM_ACTION_IND_TO_SIM_ACTION[action]
         obs = self._env.step(action)
         done = self.get_done(obs)
         obs = self.format_observations(obs, done)
@@ -125,7 +125,7 @@ class FormattedRLEnv(MultiDatasetEnv, ABC):
             depth = depth[np.newaxis, :, :, 0]  # Move channel axis to start
             obs["depth"] = depth
         # Action you took to get this image.
-        obs["prev_action_one_hot"] = pt_util.get_one_hot_numpy(self._previous_action.value, len(SimulatorActions))
+        obs["prev_action_one_hot"] = pt_util.get_one_hot_numpy(self._previous_action, len(SimulatorActions))
         return obs
 
     def get_info(self, observations):
@@ -169,7 +169,7 @@ class PointnavRLEnv(FormattedRLEnv):
     def step(self, action):
         if not self._enable_stop_action:
             if self._distance_target() < self._success_distance:
-                action = SimulatorActions.STOP.value
+                action = SimulatorActions.STOP
 
         obs, reward, done, info = super(PointnavRLEnv, self).step(action)
         return obs, reward, done, info

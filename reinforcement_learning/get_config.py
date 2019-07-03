@@ -13,7 +13,7 @@ def get_dataset_config(
     config = get_config("configs/habitat_nav_task_config.yaml")
     config.defrost()
 
-    config.DATASET.POINTNAVV1.DATA_PATH = dataset_path
+    config.DATASET.DATA_PATH = dataset_path
     config.DATASET.SPLIT = data_subset
 
     config.ENVIRONMENT.MAX_EPISODE_STEPS = max_episode_length

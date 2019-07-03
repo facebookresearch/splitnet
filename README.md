@@ -21,11 +21,11 @@ conda env update -n habitat-env -f environment.yml
 conda activate habitat-env
 ```
 3. Clone and install `habitat-sim` from [the github repo](https://github.com/facebookresearch/habitat-sim#quick-installation). You must be in the same virtualenv as before.
-Alternatively, run `pip install git+https://github.com/facebookresearch/habitat-sim.git@a674c5c13683a117c06820c54f5bec9c1775800d` to install it locally. Note that the `pip` method does not support headless compilation.
-SplitNet's codebase is known to be compatible with https://github.com/facebookresearch/habitat-sim/commit/a674c5c13683a117c06820c54f5bec9c1775800d
+Alternatively, run `pip install git+https://github.com/facebookresearch/habitat-sim.git@v0.1.2` to install it locally. Note that the `pip` method does not support headless compilation.
+SplitNet's codebase is known to be compatible with https://github.com/facebookresearch/habitat-sim/releases/tag/v0.1.2
 4. Clone and install `habitat-api` from [the github repo](https://github.com/facebookresearch/habitat-api#installation). You must be in the same virtualenv as before.
-Alternatively, run `pip install git+https://github.com/facebookresearch/habitat-api.git@5679a5dc26d5097eb14658eff91a800e18763fe6` to install it locally.
-SplitNet's codebase is known to be compatible with https://github.com/facebookresearch/habitat-api/commit/5679a5dc26d5097eb14658eff91a800e18763fe6
+Alternatively, run `pip install git+https://github.com/facebookresearch/habitat-api.git@43ab7241610804dc971344fa4b7d2b674b6f7045` to install it locally.
+SplitNet's codebase is known to be compatible with https://github.com/facebookresearch/habitat-api/commit/43ab7241610804dc971344fa4b7d2b674b6f7045
 
 ### Virtualenv
 1. Create your virtual environment: `virtualenv --python=python3.6 habitat-env && source habitat-env/bin/activate`
@@ -37,14 +37,15 @@ source habitat-env/bin/activate
 pip install -r requirements.txt
 ```
 3. Clone and install `habitat-sim` from [the github repo](https://github.com/facebookresearch/habitat-sim#quick-installation). You must be in the same virtualenv as before.
-Alternatively, run `pip install git+https://github.com/facebookresearch/habitat-sim.git@a674c5c13683a117c06820c54f5bec9c1775800d` to install it locally. Note that the `pip` method does not support headless compilation.
-SplitNet's codebase is known to be compatible with https://github.com/facebookresearch/habitat-sim/commit/a674c5c13683a117c06820c54f5bec9c1775800d
+Alternatively, run `pip install git+https://github.com/facebookresearch/habitat-sim.git@v0.1.2` to install it locally. Note that the `pip` method does not support headless compilation.
+SplitNet's codebase is known to be compatible with https://github.com/facebookresearch/habitat-sim/releases/tag/v0.1.2
 4. Clone and install `habitat-api` from [the github repo](https://github.com/facebookresearch/habitat-api#installation). You must be in the same virtualenv as before.
-Alternatively, run `pip install git+https://github.com/facebookresearch/habitat-api.git@5679a5dc26d5097eb14658eff91a800e18763fe6` to install it locally.
-SplitNet's codebase is known to be compatible with https://github.com/facebookresearch/habitat-api/commit/5679a5dc26d5097eb14658eff91a800e18763fe6
+Alternatively, run `pip install git+https://github.com/facebookresearch/habitat-api.git@43ab7241610804dc971344fa4b7d2b674b6f7045` to install it locally.
+SplitNet's codebase is known to be compatible with https://github.com/facebookresearch/habitat-api/commit/43ab7241610804dc971344fa4b7d2b674b6f7045
 
 ## Data
 We use the data sources linked from the public habitat-api repository. You will need to individually download SUNCG, MP3D, and Gibson from their sources. [habitat-sim](https://github.com/facebookresearch/habitat-sim#datasets) and [habitat-api](https://github.com/facebookresearch/habitat-api#data) share the links to the files. We additionally use the Point-Nav datasets from habitat-api, but we also provide a script for generating new datasets.
+Note: The SUNCG assets are no longer available for download, but we will keep our datasets up in case people already have the data.
 
 To use the same data from the dataset:
 1. Create a symlink to where you downloaded the directory containing the `scene_datasets` asset files for each of the datasets. Call this folder `data`.

@@ -21,7 +21,7 @@ from dg_util.python_utils import drawing
 from dg_util.python_utils import pytorch_util as pt_util
 from dg_util.python_utils import tensorboard_logger
 from habitat.datasets import make_dataset
-from habitat.sims.habitat_simulator import SimulatorActions
+from habitat import SimulatorActions
 from habitat.utils.visualizations import maps
 from habitat.utils.visualizations.utils import images_to_video
 
