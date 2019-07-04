@@ -24,8 +24,8 @@ conda activate habitat-env
 Alternatively, run `pip install git+https://github.com/facebookresearch/habitat-sim.git@v0.1.2` to install it locally. Note that the `pip` method does not support headless compilation.
 SplitNet's codebase is known to be compatible with https://github.com/facebookresearch/habitat-sim/releases/tag/v0.1.2
 4. Clone and install `habitat-api` from [the github repo](https://github.com/facebookresearch/habitat-api#installation). You must be in the same virtualenv as before.
-Alternatively, run `pip install git+https://github.com/facebookresearch/habitat-api.git@43ab7241610804dc971344fa4b7d2b674b6f7045` to install it locally.
-SplitNet's codebase is known to be compatible with https://github.com/facebookresearch/habitat-api/commit/43ab7241610804dc971344fa4b7d2b674b6f7045
+Alternatively, run `pip install git+https://github.com/facebookresearch/habitat-api.git@7015813aefae99233864c4ffcf7e52e9097392a4` to install it locally.
+SplitNet's codebase is known to be compatible with https://github.com/facebookresearch/habitat-api/commit/7015813aefae99233864c4ffcf7e52e9097392a4
 
 ### Virtualenv
 1. Create your virtual environment: `virtualenv --python=python3.6 habitat-env && source habitat-env/bin/activate`
@@ -40,8 +40,8 @@ pip install -r requirements.txt
 Alternatively, run `pip install git+https://github.com/facebookresearch/habitat-sim.git@v0.1.2` to install it locally. Note that the `pip` method does not support headless compilation.
 SplitNet's codebase is known to be compatible with https://github.com/facebookresearch/habitat-sim/releases/tag/v0.1.2
 4. Clone and install `habitat-api` from [the github repo](https://github.com/facebookresearch/habitat-api#installation). You must be in the same virtualenv as before.
-Alternatively, run `pip install git+https://github.com/facebookresearch/habitat-api.git@43ab7241610804dc971344fa4b7d2b674b6f7045` to install it locally.
-SplitNet's codebase is known to be compatible with https://github.com/facebookresearch/habitat-api/commit/43ab7241610804dc971344fa4b7d2b674b6f7045
+Alternatively, run `pip install git+https://github.com/facebookresearch/habitat-api.git@7015813aefae99233864c4ffcf7e52e9097392a4` to install it locally.
+SplitNet's codebase is known to be compatible with https://github.com/facebookresearch/habitat-api/commit/7015813aefae99233864c4ffcf7e52e9097392a4
 
 ## Data
 We use the data sources linked from the public habitat-api repository. You will need to individually download SUNCG, MP3D, and Gibson from their sources. [habitat-sim](https://github.com/facebookresearch/habitat-sim#datasets) and [habitat-api](https://github.com/facebookresearch/habitat-api#data) share the links to the files. We additionally use the Point-Nav datasets from habitat-api, but we also provide a script for generating new datasets.
