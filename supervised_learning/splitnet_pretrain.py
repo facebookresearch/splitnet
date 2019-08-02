@@ -45,8 +45,8 @@ if DEBUG:
 
 def draw_outputs(output, labels, mode):
     output[:, 4:7] = output[:, 4:7] / output[:, 4:7].norm(dim=1, keepdim=True)
-    output = pt_util.to_numpy_array(output)
-    labels = {key: pt_util.to_numpy_array(val) for key, val in labels.items()}
+    output = pt_util.to_numpy(output)
+    labels = {key: pt_util.to_numpy(val) for key, val in labels.items()}
     if USE_SEMANTIC:
         labels["semantic"][:, 0, 1] = 0
         labels["semantic"][:, 0, 0] = 40

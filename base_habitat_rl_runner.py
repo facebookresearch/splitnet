@@ -24,9 +24,11 @@ from reinforcement_learning.get_config import get_dataset_config
 from reinforcement_learning.nav_rl_env import make_env_fn, PointnavRLEnv, ExplorationRLEnv, RunAwayRLEnv
 from utils.env_util import VecPyTorch, HabitatVecEnvWrapper
 
-ACTION_SPACE_TO_SIM_ACTION = [SimulatorActions.MOVE_FORWARD, SimulatorActions.TURN_LEFT, SimulatorActions.TURN_RIGHT]
-#ACTION_SPACE = np.array([SimulatorActions[action] for action in ACTION_SPACE_TO_SIM_ACTION], dtype=np.int64)
-ACTION_SPACE = np.array(ACTION_SPACE_TO_SIM_ACTION, dtype=np.int64)
+ACTION_SPACE = [SimulatorActions.MOVE_FORWARD,
+                SimulatorActions.TURN_LEFT,
+                SimulatorActions.TURN_RIGHT]
+HABITAT_ACTION_TO_ACTION_SPACE = {val: ii for ii, val in enumerate(ACTION_SPACE)}
+ACTION_SPACE = np.array(ACTION_SPACE, dtype=np.int64)
 
 SIM_ACTION_TO_NAME = {
     SimulatorActions.MOVE_FORWARD: "Forward",
@@ -295,6 +297,7 @@ class BaseHabitatRLRunner(object):
         self.observation_space = {
             "pointgoal": ((2,), np.dtype(np.float32)),
             "prev_action_one_hot": ((len(ACTION_SPACE),), np.dtype(np.float32)),
+            "prev_action": ((1,), np.dtype(np.int64)),
         }
         self.compute_surface_normals = self.shell_args.record_video or self.shell_args.update_encoder_features
         if self.shell_args.algo == "supervised":

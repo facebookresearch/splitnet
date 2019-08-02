@@ -21,7 +21,7 @@ from habitat.datasets import make_dataset
 from habitat import SimulatorActions
 from habitat.utils.visualizations.utils import images_to_video
 
-from base_habitat_rl_runner import ACTION_SPACE, SIM_ACTION_TO_NAME, ACTION_SPACE_TO_SIM_ACTION
+from base_habitat_rl_runner import ACTION_SPACE, SIM_ACTION_TO_NAME
 from eval_splitnet import HabitatRLEvalRunner, REWARD_SCALAR
 from utils import draw_outputs
 from utils.storage import RolloutStorageWithMultipleObservations
@@ -123,7 +123,7 @@ class HabitatRLTrainAndEvalRunner(HabitatRLEvalRunner):
         if self.shell_args.algo == "supervised":
             obs["best_next_action"] = pt_util.from_numpy(obs["best_next_action"][:, ACTION_SPACE])
         self.rollouts.copy_obs(obs, 0)
-        distances = pt_util.to_numpy_array(obs["goal_geodesic_distance"])
+        distances = pt_util.to_numpy(obs["goal_geodesic_distance"])
         self.train_stats["start_geodesic_distance"][:] = distances
         previous_visual_features = None
         egomotion_pred = None
@@ -170,7 +170,7 @@ class HabitatRLTrainAndEvalRunner(HabitatRLEvalRunner):
                             self.rollouts.recurrent_hidden_states[step],
                             self.rollouts.masks[step],
                         )
-                        action_cpu = pt_util.to_numpy_array(action.squeeze(1))
+                        action_cpu = pt_util.to_numpy(action.squeeze(1))
                         translated_action_space = ACTION_SPACE[action_cpu]
                         if not self.shell_args.end_to_end:
                             self.rollouts.additional_observations_dict["visual_encoder_features"][
@@ -191,17 +191,15 @@ class HabitatRLTrainAndEvalRunner(HabitatRLEvalRunner):
                             # Copy so we don't mess with obs itself
                             draw_obs = OrderedDict()
                             for key, val in obs.items():
-                                draw_obs[key] = pt_util.to_numpy_array(val).copy()
+                                draw_obs[key] = pt_util.to_numpy(val).copy()
                             best_next_action = draw_obs.pop("best_next_action", None)
 
                             if prev_action is not None:
-                                draw_obs["action_taken"] = pt_util.to_numpy_array(self.agent.last_dist.probs).copy()
+                                draw_obs["action_taken"] = pt_util.to_numpy(self.agent.last_dist.probs).copy()
                                 draw_obs["action_taken"][:] = 0
                                 draw_obs["action_taken"][np.arange(self.shell_args.num_processes), prev_action] = 1
-                                draw_obs["action_taken_name"] = SIM_ACTION_TO_NAME[
-                                    ACTION_SPACE_TO_SIM_ACTION[ACTION_SPACE[prev_action.squeeze()]]
-                                ]
-                                draw_obs["action_prob"] = pt_util.to_numpy_array(prev_action_probs).copy()
+                                draw_obs["action_taken_name"] = SIM_ACTION_TO_NAME[draw_obs['prev_action'].item()]
+                                draw_obs["action_prob"] = pt_util.to_numpy(prev_action_probs).copy()
                             else:
                                 draw_obs["action_taken"] = None
                                 draw_obs["action_taken_name"] = SIM_ACTION_TO_NAME[SimulatorActions.STOP]
@@ -217,7 +215,7 @@ class HabitatRLTrainAndEvalRunner(HabitatRLEvalRunner):
                                     outputs = self.agent.base.decoder_outputs[
                                         :, min_channel : min_channel + num_channels, ...
                                     ]
-                                    draw_obs["output_" + key] = pt_util.to_numpy_array(outputs).copy()
+                                    draw_obs["output_" + key] = pt_util.to_numpy(outputs).copy()
                                     min_channel += num_channels
                             draw_obs["rewards"] = current_rewards.copy()
                             draw_obs["step"] = current_episode_lengths.copy()
@@ -226,7 +224,7 @@ class HabitatRLTrainAndEvalRunner(HabitatRLEvalRunner):
                                 draw_obs["best_next_action"] = best_next_action
                             if self.shell_args.use_motion_loss:
                                 if egomotion_pred is not None:
-                                    draw_obs["egomotion_pred"] = pt_util.to_numpy_array(
+                                    draw_obs["egomotion_pred"] = pt_util.to_numpy(
                                         F.softmax(egomotion_pred, dim=1)
                                     ).copy()
                                 else:
@@ -250,7 +248,7 @@ class HabitatRLTrainAndEvalRunner(HabitatRLEvalRunner):
                             video_frames.append(subplot_image)
 
                         # save dists from previous step or else on reset they will be overwritten
-                        distances = pt_util.to_numpy_array(obs["goal_geodesic_distance"])
+                        distances = pt_util.to_numpy(obs["goal_geodesic_distance"])
 
                         start_t = time.time()
                         obs, rewards, dones, infos = self.envs.step(translated_action_space)
@@ -270,8 +268,8 @@ class HabitatRLTrainAndEvalRunner(HabitatRLEvalRunner):
                         if self.compute_surface_normals:
                             obs["surface_normals"] = pt_util.depth_to_surface_normals(obs["depth"].to(self.device))
 
-                        current_rewards = pt_util.to_numpy_array(rewards)
-                        current_episode_rewards += pt_util.to_numpy_array(rewards).squeeze()
+                        current_rewards = pt_util.to_numpy(rewards)
+                        current_episode_rewards += pt_util.to_numpy(rewards).squeeze()
                         current_episode_lengths += 1
                         for ii, done_e in enumerate(dones):
                             if done_e:
@@ -556,7 +554,7 @@ class HabitatRLTrainAndEvalRunner(HabitatRLEvalRunner):
                     if self.shell_args.algo == "supervised":
                         obs["best_next_action"] = pt_util.from_numpy(obs["best_next_action"][:, ACTION_SPACE])
                     self.rollouts.copy_obs(obs, 0)
-                    distances = pt_util.to_numpy_array(obs["goal_geodesic_distance"])
+                    distances = pt_util.to_numpy(obs["goal_geodesic_distance"])
                     self.train_stats["start_geodesic_distance"][:] = distances
                     previous_visual_features = None
                     egomotion_pred = None

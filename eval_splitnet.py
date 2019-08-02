@@ -25,7 +25,7 @@ from habitat import SimulatorActions
 from habitat.utils.visualizations import maps
 from habitat.utils.visualizations.utils import images_to_video
 
-from base_habitat_rl_runner import ACTION_SPACE, ACTION_SPACE_TO_SIM_ACTION, SIM_ACTION_TO_NAME
+from base_habitat_rl_runner import ACTION_SPACE, SIM_ACTION_TO_NAME
 from base_habitat_rl_runner import BaseHabitatRLRunner
 from reinforcement_learning.get_config import get_dataset_config
 from utils import draw_outputs
@@ -184,7 +184,7 @@ class HabitatRLEvalRunner(BaseHabitatRLRunner):
             eval_output_file.write("episode_id,reward,visited_states\n")
         elif self.shell_args.task == "flee":
             eval_output_file.write("episode_id,reward,distance_from_start\n")
-        distances = pt_util.to_numpy_array(obs["goal_geodesic_distance"])
+        distances = pt_util.to_numpy(obs["goal_geodesic_distance"])
         eval_stats["start_geodesic_distance"][:] = distances
         progress_bar = tqdm.tqdm(total=self.num_eval_episodes_total)
         all_done = False
@@ -211,7 +211,7 @@ class HabitatRLEvalRunner(BaseHabitatRLRunner):
                     recurrent_hidden_states,
                     masks,
                 )
-                action_cpu = pt_util.to_numpy_array(action.squeeze(1))
+                action_cpu = pt_util.to_numpy(action.squeeze(1))
                 translated_action_space = ACTION_SPACE[action_cpu]
 
                 timers[1] += time.time() - start_t
@@ -227,17 +227,15 @@ class HabitatRLEvalRunner(BaseHabitatRLRunner):
                     # Copy so we don't mess with obs itself
                     draw_obs = OrderedDict()
                     for key, val in obs.items():
-                        draw_obs[key] = pt_util.to_numpy_array(val).copy()
+                        draw_obs[key] = pt_util.to_numpy(val).copy()
                     best_next_action = draw_obs.pop("best_next_action", None)
 
                     if prev_action is not None:
-                        draw_obs["action_taken"] = pt_util.to_numpy_array(self.agent.last_dist.probs).copy()
+                        draw_obs["action_taken"] = pt_util.to_numpy(self.agent.last_dist.probs).copy()
                         draw_obs["action_taken"][:] = 0
                         draw_obs["action_taken"][np.arange(self.shell_args.num_processes), prev_action] = 1
-                        draw_obs["action_taken_name"] = SIM_ACTION_TO_NAME[
-                            ACTION_SPACE_TO_SIM_ACTION[ACTION_SPACE[prev_action.squeeze()]]
-                        ]
-                        draw_obs["action_prob"] = pt_util.to_numpy_array(prev_action_probs).copy()
+                        draw_obs["action_taken_name"] = SIM_ACTION_TO_NAME[draw_obs['prev_action'].item()]
+                        draw_obs["action_prob"] = pt_util.to_numpy(prev_action_probs).copy()
                     else:
                         draw_obs["action_taken"] = None
                         draw_obs["action_taken_name"] = SIM_ACTION_TO_NAME[SimulatorActions.STOP]
@@ -248,7 +246,7 @@ class HabitatRLEvalRunner(BaseHabitatRLRunner):
                         min_channel = 0
                         for key, num_channels in self.agent.base.decoder_output_info:
                             outputs = self.agent.base.decoder_outputs[:, min_channel : min_channel + num_channels, ...]
-                            draw_obs["output_" + key] = pt_util.to_numpy_array(outputs).copy()
+                            draw_obs["output_" + key] = pt_util.to_numpy(outputs).copy()
                             min_channel += num_channels
                     draw_obs["rewards"] = eval_stats["reward"]
                     draw_obs["step"] = current_episode_lengths.copy()
@@ -257,7 +255,7 @@ class HabitatRLEvalRunner(BaseHabitatRLRunner):
                         draw_obs["best_next_action"] = best_next_action
                     if self.shell_args.use_motion_loss:
                         if egomotion_pred is not None:
-                            draw_obs["egomotion_pred"] = pt_util.to_numpy_array(F.softmax(egomotion_pred, dim=1)).copy()
+                            draw_obs["egomotion_pred"] = pt_util.to_numpy(F.softmax(egomotion_pred, dim=1)).copy()
                         else:
                             draw_obs["egomotion_pred"] = None
                     images, titles, normalize = draw_outputs.obs_to_images(draw_obs)
@@ -277,7 +275,7 @@ class HabitatRLEvalRunner(BaseHabitatRLRunner):
                     video_frames.append(subplot_image)
 
                 # save dists from previous step or else on reset they will be overwritten
-                distances = pt_util.to_numpy_array(obs["goal_geodesic_distance"])
+                distances = pt_util.to_numpy(obs["goal_geodesic_distance"])
 
                 start_t = time.time()
                 obs, rewards, dones, infos = self.envs.step(translated_action_space)
@@ -292,7 +290,7 @@ class HabitatRLEvalRunner(BaseHabitatRLRunner):
                 if self.compute_surface_normals:
                     obs["surface_normals"] = pt_util.depth_to_surface_normals(obs["depth"].to(self.device))
 
-                current_episode_rewards += pt_util.to_numpy_array(rewards).squeeze()
+                current_episode_rewards += pt_util.to_numpy(rewards).squeeze()
                 current_episode_lengths += 1
                 to_pause = []
                 for ii, done_e in enumerate(dones):

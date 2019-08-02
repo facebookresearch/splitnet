@@ -16,8 +16,6 @@ from habitat import SimulatorActions
 
 from utils import one_hot_shortest_path_follower
 
-#SIM_ACTION_IND_TO_SIM_ACTION = {SimulatorActions[action]: action for action in SimulatorActions}
-
 
 class MultiDatasetEnv(habitat.RLEnv, ABC):
     def __init__(self, config, datasets):
@@ -93,7 +91,7 @@ class FormattedRLEnv(MultiDatasetEnv, ABC):
 
     def step(self, action):
         self._previous_pose = self._current_pose
-        self._previous_action = action #SIM_ACTION_IND_TO_SIM_ACTION[action]
+        self._previous_action = action
         obs = self._env.step(action)
         done = self.get_done(obs)
         obs = self.format_observations(obs, done)
@@ -125,6 +123,7 @@ class FormattedRLEnv(MultiDatasetEnv, ABC):
             depth = depth[np.newaxis, :, :, 0]  # Move channel axis to start
             obs["depth"] = depth
         # Action you took to get this image.
+        obs["prev_action"] = self._previous_action
         obs["prev_action_one_hot"] = pt_util.get_one_hot_numpy(self._previous_action, len(SimulatorActions))
         return obs
 
@@ -159,7 +158,6 @@ class PointnavRLEnv(FormattedRLEnv):
         obs = super(PointnavRLEnv, self).format_observations(obs, done)
         if self._return_best_next_action and not done:
             obs["best_next_action"] = self._follower.get_next_action(
-                # np.array(self.habitat_env.current_episode.goals[0].position), SIM_ACTION_TO_NAME[self._previous_action]
                 np.array(self.habitat_env.current_episode.goals[0].position),
                 self._previous_action,
             )
