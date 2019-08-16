@@ -18,7 +18,7 @@ from habitat.tasks.nav.nav_task import NavigationEpisode, NavigationGoal
 DEBUG = False
 
 DATA_SPLIT = "train"
-DATASET = "suncg"
+DATASET = "mp3d"
 CFG = "configs/habitat_nav_task_config.yaml"
 
 if DATA_SPLIT == "train":
@@ -48,8 +48,6 @@ config.TASK.goal_type = "dense"
 # get list of all scenes
 if DATASET == "mp3d":
     scenes = sorted(glob.glob("data/scene_datasets/mp3d/*"))
-elif DATASET == "suncg":
-    scenes = sorted(glob.glob("data/scene_datasets/suncg/house/*"))
 elif DATASET == "gibson":
     scenes = sorted(glob.glob("data/scene_datasets/mp3d/*"))
 else:
@@ -75,8 +73,6 @@ episodes = []
 for ii, house in enumerate(scenes):
     if DATASET == "mp3d":
         scene_id = house + os.sep + house + ".glb"
-    elif DATASET == "suncg":
-        scene_id = (house + "/house.json",)
     elif DATASET == "gibson":
         scene_id = house + ".glb"
     else:

@@ -109,7 +109,7 @@ def get_args():
     )
 
     parser.add_argument(
-        "--dataset", type=str, default="mp3d", help="Picks which dataset to load: mp3d | gibson | suncg", required=True
+        "--dataset", type=str, default="mp3d", help="Picks which dataset to load: mp3d | gibson", required=True
     )
 
     parser.add_argument(

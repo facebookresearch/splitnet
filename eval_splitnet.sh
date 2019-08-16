@@ -4,7 +4,7 @@
 # This source code is licensed under the Creative Commons license found in the
 # LICENSE file in the root directory of this source tree.
 
-DATASET="suncg"
+DATASET="mp3d"
 TASK="pointnav"
 
 export GLOG_minloglevel=2

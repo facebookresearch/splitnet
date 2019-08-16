@@ -17,8 +17,8 @@ wget https://dl.fbaipublicfiles.com/splitnet/splitnet_models.tar
 echo "Unzipping"
 tar -xf splitnet_models.tar
 mv splitnet_models/* .
-rm -rf splitnet_models
-rm -rf splitnet_models.tar
+rmdir splitnet_models
+rm splitnet_models.tar
 echo "Success"
 cd ..
 

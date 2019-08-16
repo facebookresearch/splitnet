@@ -17,8 +17,8 @@ wget https://dl.fbaipublicfiles.com/splitnet/splitnet_dataset.tar
 echo "Unzipping"
 tar -xf splitnet_dataset.tar
 mv splitnet_dataset/* .
-rm -rf splitnet_dataset
-rm -rf splitnet_dataset.tar
+rmdir splitnet_dataset
+rm splitnet_dataset.tar
 echo "Success"
 cd ..
 

@@ -34,5 +34,5 @@ SIMULATOR:
     TYPE: HabitatSimSemanticSensor
 DATASET:
   TYPE: PointNav-v1
-  DATA_PATH: data/datasets/pointnav/suncg/v1/{split}/{split}.json.gz
+  DATA_PATH: data/datasets/pointnav/mp3d/v1/{split}/{split}.json.gz
 

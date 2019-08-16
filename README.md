@@ -44,8 +44,7 @@ Alternatively, run `pip install git+https://github.com/facebookresearch/habitat-
 SplitNet's codebase is known to be compatible with https://github.com/facebookresearch/habitat-api/commit/7015813aefae99233864c4ffcf7e52e9097392a4
 
 ## Data
-We use the data sources linked from the public habitat-api repository. You will need to individually download SUNCG, MP3D, and Gibson from their sources. [habitat-sim](https://github.com/facebookresearch/habitat-sim#datasets) and [habitat-api](https://github.com/facebookresearch/habitat-api#data) share the links to the files. We additionally use the Point-Nav datasets from habitat-api, but we also provide a script for generating new datasets.
-Note: The SUNCG assets are no longer available for download, but we will keep our datasets up in case people already have the data.
+We use the data sources linked from the public habitat-api repository. You will need to individually download MP3D, and Gibson from their sources. [habitat-sim](https://github.com/facebookresearch/habitat-sim#datasets) and [habitat-api](https://github.com/facebookresearch/habitat-api#data) share the links to the files. We additionally use the Point-Nav datasets from habitat-api, but we also provide a script for generating new datasets.
 
 To use the same data from the dataset:
 1. Create a symlink to where you downloaded the directory containing the `scene_datasets` asset files for each of the datasets. Call this folder `data`.
@@ -53,7 +52,7 @@ To use the same data from the dataset:
 ln -s /path/to/habitat/data data
 ```
 1. Verify that this is set up in the expected way by running `ls data/scene_datasets`. You should see:
-`gibson  mp3d  suncg` based on which you have downloaded.
+`gibson  mp3d` based on which you have downloaded.
 1. Download and extract the premade training datasets by running `sh download_dataset.sh`.
 1. Copy/Move the downloaded datasets into the data folder.
 ```bash

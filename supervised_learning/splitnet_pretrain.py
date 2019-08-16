@@ -277,12 +277,12 @@ def main():
     )
 
     sensors = ["RGB_SENSOR", "DEPTH_SENSOR"] + (["SEMANTIC_SENSOR"] if USE_SEMANTIC else [])
-    if args.dataset == "suncg":
+    if args.dataset == "mp3d":
         data_train = HabitatImageGenerator(
             render_gpus,
-            "suncg",
+            "mp3d",
             args.data_subset,
-            "data/dumps/suncg/{split}/dataset_one_ep_per_scene.json.gz",
+            "data/dumps/mp3d/{split}/dataset_one_ep_per_scene.json.gz",
             images_before_reset=1000,
             sensors=sensors,
             transform=train_transforms,
@@ -293,9 +293,9 @@ def main():
 
         data_test = HabitatImageGenerator(
             render_gpus,
-            "suncg",
+            "mp3d",
             "val",
-            "data/dumps/suncg/{split}/dataset_one_ep_per_scene.json.gz",
+            "data/dumps/mp3d/{split}/dataset_one_ep_per_scene.json.gz",
             images_before_reset=1000,
             sensors=sensors,
         )

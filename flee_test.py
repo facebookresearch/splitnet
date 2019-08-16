@@ -10,7 +10,7 @@ from reinforcement_learning.get_config import get_dataset_config
 from reinforcement_learning.nav_rl_env import RunAwayRLEnv, ExplorationRLEnv
 
 data_subset = "val"
-dataset = "suncg"
+dataset = "mp3d"
 max_episode_length = 250
 RESOLUTION = 10
 
@@ -38,9 +38,7 @@ def draw_top_down_map(info, heading, output_size):
     return top_down_map
 
 
-if dataset == "suncg":
-    data_path = "data/datasets/pointnav/suncg/v1/{split}/{split}.json.gz"
-elif dataset == "mp3d":
+if dataset == "mp3d":
     data_path = "data/datasets/pointnav/mp3d/v1/{split}/{split}.json.gz"
 elif dataset == "gibson":
     data_path = "data/datasets/pointnav/gibson/v1/{split}/{split}.json.gz"

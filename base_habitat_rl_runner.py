@@ -117,9 +117,7 @@ class BaseHabitatRLRunner(object):
             if "SEMANTIC_SENSOR" in extra_agent_sensors:
                 extra_task_sensors.append("CLASS_SEGMENTATION_SENSOR")
 
-            if self.shell_args.dataset == "suncg":
-                data_path = "data/datasets/pointnav/suncg/v1/{split}/{split}.json.gz"
-            elif self.shell_args.dataset == "mp3d":
+            if self.shell_args.dataset == "mp3d":
                 data_path = "data/datasets/pointnav/mp3d/v1/{split}/{split}.json.gz"
             elif self.shell_args.dataset == "gibson":
                 data_path = "data/datasets/pointnav/gibson/v1/{split}/{split}.json.gz"
@@ -155,19 +153,13 @@ class BaseHabitatRLRunner(object):
                 config.ENVIRONMENT.MAX_EPISODE_STEPS = 250
                 config.TASK.TOP_DOWN_MAP.DRAW_SOURCE_AND_TARGET = False
                 self.env_types.append(ExplorationRLEnv)
-                if self.shell_args.dataset == "suncg":
-                    config.TASK.NUM_EPISODES_BEFORE_JUMP = 5
-                else:
-                    config.TASK.NUM_EPISODES_BEFORE_JUMP = 5
+                config.TASK.NUM_EPISODES_BEFORE_JUMP = 5
             elif self.shell_args.task == "flee":
                 config.TASK.COLLISION_REWARD = 0  # -0.1
                 config.ENVIRONMENT.MAX_EPISODE_STEPS = 250
                 config.TASK.TOP_DOWN_MAP.DRAW_SOURCE_AND_TARGET = False
                 self.env_types.append(RunAwayRLEnv)
-                if self.shell_args.dataset == "suncg":
-                    config.TASK.NUM_EPISODES_BEFORE_JUMP = 5
-                else:
-                    config.TASK.NUM_EPISODES_BEFORE_JUMP = 5
+                config.TASK.NUM_EPISODES_BEFORE_JUMP = 5
             else:
                 raise NotImplementedError("Unknown task type")
 

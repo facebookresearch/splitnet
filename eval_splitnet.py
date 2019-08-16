@@ -34,9 +34,7 @@ REWARD_SCALAR = 1.0
 
 
 def get_eval_dataset(shell_args, data_subset="val"):
-    if shell_args.dataset == "suncg":
-        data_path = "data/datasets/pointnav/suncg/v1/{split}/{split}.json.gz"
-    elif shell_args.dataset == "mp3d":
+    if shell_args.dataset == "mp3d":
         data_path = "data/datasets/pointnav/mp3d/v1/{split}/{split}.json.gz"
     elif shell_args.dataset == "gibson":
         data_path = "data/datasets/pointnav/gibson/v1/{split}/{split}.json.gz"
