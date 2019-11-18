@@ -109,10 +109,11 @@ SplitNet is licensed under Creative Commons-Non Commercial 4.0. See the [LICENSE
 
 ## Citation
 ```
-@article{gordon2019splitnet,
-  title={SplitNet: Sim2Sim and Task2Task Transfer for Embodied Visual Navigation,
-  author={Gordon, Daniel and Kadian, Abhishek and Parikh, Devi and Hoffman, Judy and Batra, Dhruv},
-  journal={arXiv preprint arXiv:1905.07512},
-  year={2019}
-
+@inproceedings{gordon2019splitnet, 
+    title={SplitNet: Sim2Sim and Task2Task Transfer for Embodied Visual Navigation}, 
+    author={Gordon, Daniel and Kadian, Abhishek and Parikh, Devi and Hoffman, Judy and Batra, Dhruv},
+    booktitle = {The IEEE International Conference on Computer Vision (ICCV)},
+    month = {October},
+    year={2019},
 }
+```
