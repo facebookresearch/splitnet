@@ -32,4 +32,3 @@ python train_splitnet.py \
     --task pointnav \
     --pytorch-gpu-ids 3 \
     --render-gpu-ids 4,5,6 \
-    --end-to-end \
